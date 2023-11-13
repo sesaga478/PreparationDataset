@@ -2,7 +2,7 @@ import h5py
 import matplotlib.pyplot as plt
 import numpy as np
 
-def convert_h5_to_rgb_png(h5_in, h5_data, out):
+def convert_h5_to_rgb(h5_in, h5_data, out):
     # Load data from the H5 file
     with h5py.File(h5_in, 'r') as h5_file:
         # Assuming the dataset is named 'data'
@@ -23,6 +23,6 @@ def convert_h5_to_rgb_png(h5_in, h5_data, out):
     plt.imshow(rgb_image)
     plt.axis('off')  # Turn off axis labels and ticks
 
-    # Save the RGB image as a PNG file
+    # Save the RGB image
     plt.savefig(out, bbox_inches='tight', pad_inches=0)
-    print(f"Conversion complete. RGB PNG saved at: {out}")
+    print(f"Conversion complete. RGB saved at: {out}")
