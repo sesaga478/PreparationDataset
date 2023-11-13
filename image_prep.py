@@ -26,3 +26,28 @@ def convert_h5_to_rgb(h5_in, h5_data, out):
     # Save the RGB image
     plt.savefig(out, bbox_inches='tight', pad_inches=0)
     print(f"Conversion complete. RGB saved at: {out}")
+
+
+def convert_h5_to_bw(h5_in, h5_data, out):
+    # Load data from the H5 file
+    with h5py.File(h5_in, 'r') as h5_file:
+        # Assuming the dataset is named 'data'
+        data = h5_file[h5_data][:]
+    
+    if len(data.shape) == 2:
+        # If the data is 2D, it's a grayscale image
+        bw_image_normalized = (data - np.min(data)) / (np.max(data) - np.min(data))
+    elif len(data.shape) == 3 and data.shape[2] == 14:
+        # If the data is 3D with 14 channels, collapse them (e.g., by summing)
+        bw_image = np.sum(data, axis=2)
+        bw_image_normalized = (bw_image - np.min(bw_image)) / (np.max(bw_image) - np.min(bw_image))
+    else:
+        print("Unsupported data shape.")
+
+    # Display the black and white image
+    plt.imshow(bw_image_normalized, cmap='gray')  # 'gray' colormap represents black and white
+    plt.axis('off')  # Turn off axis labels and ticks
+
+    # Save the black and white image as a PNG file
+    plt.savefig(output_png_path, bbox_inches='tight', pad_inches=0)
+    print(f"Conversion complete. Black and white PNG saved at: {output_png_path}")
