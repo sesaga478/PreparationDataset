@@ -49,5 +49,5 @@ def convert_h5_to_bw(h5_in, h5_data, out):
     plt.axis('off')  # Turn off axis labels and ticks
 
     # Save the black and white image as a PNG file
-    plt.savefig(output_png_path, bbox_inches='tight', pad_inches=0)
-    print(f"Conversion complete. Black and white PNG saved at: {output_png_path}")
+    plt.savefig(out, bbox_inches='tight', pad_inches=0)
+    print(f"Conversion complete. Black and white PNG saved at: {out}")
