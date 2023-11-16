@@ -50,4 +50,4 @@ def convert_h5_to_bw(h5_in, h5_data, out):
 
     # Save the black and white image as a PNG file
     plt.savefig(out, bbox_inches='tight', pad_inches=0)
-    print(f"Conversion complete. Black and white PNG saved at: {out}")
+    print(f"Conversion complete. Black and white saved at: {out}")
